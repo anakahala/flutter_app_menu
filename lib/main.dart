@@ -22,10 +22,182 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MenuPage(),
     );
   }
 }
+
+class MenuPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState()  => _MenuPage();
+}
+
+// https://ichi.pro/flutter-whijyettogaido-5-fun-inai-no-te-buruwhijyetto-170971901812756
+class _MenuPage extends State<MenuPage> {
+  bool _isBorderEnabled = false;
+  var _actionIcon = Icons.border_all;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Container(
+          child: Text(
+            'Menu Page',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(_actionIcon),
+              onPressed: () => setState(() {
+                _isBorderEnabled == false
+                    ? _isBorderEnabled = true
+                    : _isBorderEnabled = false;
+                _isBorderEnabled
+                  ? _actionIcon = Icons.border_clear
+                  : _actionIcon = Icons.border_all;
+              }),
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 12),
+        child: Table(
+          border: _isBorderEnabled ? TableBorder.all() : null,
+          defaultVerticalAlignment: TableCellVerticalAlignment.top,
+          children: <TableRow>[
+            TableRow(children: <Widget>[
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.red,
+                  width: 48.0,
+                  height: 100.0,
+                  child: Center(
+                    child: Text(
+                      "Row 1 \n Element 1",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 6.0
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.orange,
+                  width: 50.0,
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      "Row 1 \n Element 2",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 6.0
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.blue,
+                  width: 50.0,
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      "Row 1 \n Element 3",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 6.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+            // second table row
+            TableRow(children: <Widget>[
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.lightBlue,
+                  width: 50.0,
+                  height: 48.0,
+                  child: Center(
+                    child: Text(
+                      "Row 2 \n Element 1",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 6.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.green,
+                  width: 48.0,
+                  height: 48.0,
+                  child: Center(
+                    child: Text(
+                      "Row 2 \n Element 2",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 6.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  margin: EdgeInsets.all(2),
+                  color: Colors.blue,
+                  width: 50.0,
+                  height: 100.0,
+                  child: Center(
+                    child: Text(
+                      "Row 2 \n Element 3",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 6.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ])
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
